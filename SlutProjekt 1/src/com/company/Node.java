@@ -3,40 +3,53 @@ package com.company;
 import java.util.ArrayList;
 
 public class Node {
-   private  String name;
+    private String name;
+    private double latitude;
+    private double longitude;
+    private ArrayList<Node> neighbours;
 
-  private  double latitude;
-
-  private  double longtitude;
-
-  private  ArrayList <Node>neighbours = new ArrayList<Node>();
-
-    public Node(name, latitude, longitude, neighbours){
-        setName(name);
-        setLatitude(latitude);
-        setLongitude(longitude);
+    public Node(String n, double lat, double lon) {
         neighbours = new ArrayList<>();
+        setName(n);
+        setLatitude(lat);
+        setLongitude(lon);
+
 
     }
 
-     public String getName() {
+    public void setName(String n) {
+        name = n;
+    }
 
-       return name;
+    public void setLatitude(double lat) {
+        latitude = lat;
+    }
+
+    public void setLongitude(double lon) {
+        longitude = lon;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public String getName() {
+        return name;
     }
 
 
-    setName(name : String)
+    public void addNeighbour(Node town) {
+        neighbours.add(town);
+    }
 
-getLatitude() : double
+    public ArrayList<Node> getNeighbours() {
+        return neighbours;
+    }
 
-setLatitude(latitude : double)
 
-getLongitude() : double
-
-setLongitude(longitude : double)
-
-addNeighbour(neighbour : Node)
-
-getNeighbours() : ArrayList<Node>
 
 }
