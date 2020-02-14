@@ -19,7 +19,7 @@ public class Node {
 
     }
 
-    public String getName() {
+     public String getName() {
 
        return name;
     }
