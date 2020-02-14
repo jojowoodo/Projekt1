@@ -3,20 +3,29 @@ package com.company;
 import java.util.ArrayList;
 
 public class Node {
-    String name;
+   private  String name;
 
-    double latitude;
+  private  double latitude;
 
-    double longtitude;
+  private  double longtitude;
 
-    ArrayList <Node>neighbours = new ArrayList<Node>();
+  private  ArrayList <Node>neighbours = new ArrayList<Node>();
 
-   public String getName() {
+    public Node(name, latitude, longitude, neighbours){
+        setName(name);
+        setLatitude(latitude);
+        setLongitude(longitude);
+        neighbours = new ArrayList<>();
+
+    }
+
+    public String getName() {
 
        return name;
     }
 
-setName(name : String)
+
+    setName(name : String)
 
 getLatitude() : double
 
@@ -29,4 +38,5 @@ setLongitude(longitude : double)
 addNeighbour(neighbour : Node)
 
 getNeighbours() : ArrayList<Node>
+
 }
