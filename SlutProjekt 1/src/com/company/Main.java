@@ -62,7 +62,7 @@ public class Main {
         return graph;
     }
     public static void showNodesAndLinks(){
-        ArrayList<Node> test = new ArrayList<>();
+        ArrayList<Node> test;
         test = createGraph();
         for (int i = 0; i < test.size(); i++){
             Node noden = test.get(i);

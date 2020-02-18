@@ -7,8 +7,7 @@ public class Node {
     private double latitude;
     private double longitude;
     private ArrayList<Node> neighbours;
-    private int previous;
-
+    private Node previous;
 
     public Node(String n, double lat, double lon) {
         neighbours = new ArrayList<>();
@@ -17,9 +16,6 @@ public class Node {
         setLongitude(lon);
 
 
-    }
-
-    private void previous() {
     }
 
     public void setName(String n) {
@@ -44,6 +40,10 @@ public class Node {
 
     public String getName() {
         return name;
+    }
+
+    public void setPrevious(Node p){
+        previous = p;
     }
 
 
@@ -79,26 +79,29 @@ public class Node {
         return H;
     }
 
-    public <destination> getRoute(Node source, destination) {
+    public double calculateG(Node source){
+        double G = 0;
+        Node current = this;
+
+        current.calculateH(current.previous);
+
+        return G;
+    }
+    public double getF(){
+        double F = calculateH() + calculateG();
+        return F;
+    }
+
+    public getRoute(Node source, destination) {
         ArrayList candidates, visited = new ArrayList();
         Node current = source;
         boolean done;
 
         if (done = false) {
             int minF = 0;
-            Object next = null;
-            for (int i = 0; i < current.neighbours.size(); i++)
-            {
-                neighbours.put(candidates);
-                previous = current.size();
-            }
-            for (int j = 0; j < candidates.size(); j++)
-            {
-                if candidates =
-            }
+            char next = null;
 
 
-            return route;
         }
 
     }
