@@ -42,7 +42,7 @@ public class Node {
         return name;
     }
 
-    public void setPrevious(Node p){
+    public void setPrevious(Node p) {
         previous = p;
     }
 
@@ -79,7 +79,7 @@ public class Node {
         return H;
     }
 
-    public double calculateG(Node source){
+    public double calculateG(Node source) {
         double G = 0;
         Node current = this;
 
@@ -87,33 +87,51 @@ public class Node {
 
         return G;
     }
-    public double getF(){
+
+    public double getF(ArrayList candidates) {
         double F = calculateH() + calculateG();
         return F;
     }
 
-    public <destination> getRoute(Node source, destination) {
-        ArrayList candidates, visited = new ArrayList();
+    public getRoute(Node source, Node destination) {
+        ArrayList candidates = null, visited = new ArrayList();
         Node current = source;
         boolean done;
 
         if (done = false) {
-            int minF = 0;
+            double minF = 0;
             Object next = null;
-            for (int i = 0; i < current.neighbours.size(); i++)
-            {
+            for (int i = 0; i < current.neighbours.size(); i++) {
                 neighbours.add(candidates);
-                previous = current.size();
+                previous = current;
+
+                for (int j = 0; j < candidates.size(); j++) {
+
+                    if (candidates = destination) {
+                        done = true;
+                        break;
+                    } else {
+                        getF(candidates);
+                        if (minF == 0 || minF > getF(candidates)) {
+                            minF = getF(candidates);
+                            next = candidates;
+                        }
+                    }
+                }
+                if (done == false) {
+                    current = next;
+                    visited += current;
+                    candidates.remove(current);
+
+                }
             }
-            for (int j = 0; j < candidates.size(); j++)
-            {
-                if candidates =
-            }
+            if (current != source) {
 
 
-            return route;
+                current.previous();
+            }
+
         }
-
+        return route;
     }
-
 }
