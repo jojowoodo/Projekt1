@@ -93,8 +93,8 @@ public class Node {
         return F;
     }
 
-    public getRoute(Node source, Node destination) {
-        ArrayList candidates = null, visited = new ArrayList();
+    public getRoute(Node source,Node destination) {
+        ArrayList candidates = new ArrayList<>(), visited = new ArrayList();
         Node current = source;
         boolean done;
 
@@ -127,11 +127,9 @@ public class Node {
             }
             if (current != source) {
 
-
                 current.previous();
             }
-
+            return route;
         }
-        return route;
     }
 }
