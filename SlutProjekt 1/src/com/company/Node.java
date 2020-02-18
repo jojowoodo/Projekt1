@@ -6,11 +6,11 @@ public class Node {
     private String name;
     private double latitude;
     private double longitude;
-    private ArrayList<Node> neighbours;
+    private ArrayList<ArrayList> neighbours;
     private Node previous;
 
     public Node(String n, double lat, double lon) {
-        neighbours = new ArrayList<>();
+        neighbours = new ArrayList<ArrayList>();
         setName(n);
         setLatitude(lat);
         setLongitude(lon);
@@ -47,11 +47,11 @@ public class Node {
     }
 
 
-    public void addNeighbour(Node town) {
+    public void addNeighbour(ArrayList town) {
         neighbours.add(town);
     }
 
-    public ArrayList<Node> getNeighbours() {
+    public ArrayList<ArrayList> getNeighbours() {
         return neighbours;
     }
 
@@ -92,16 +92,26 @@ public class Node {
         return F;
     }
 
-    public getRoute(Node source, destination) {
+    public <destination> getRoute(Node source, destination) {
         ArrayList candidates, visited = new ArrayList();
         Node current = source;
         boolean done;
 
         if (done = false) {
             int minF = 0;
-            char next = null;
+            Object next = null;
+            for (int i = 0; i < current.neighbours.size(); i++)
+            {
+                neighbours.add(candidates);
+                previous = current.size();
+            }
+            for (int j = 0; j < candidates.size(); j++)
+            {
+                if candidates =
+            }
 
 
+            return route;
         }
 
     }
