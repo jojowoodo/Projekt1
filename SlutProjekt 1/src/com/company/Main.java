@@ -2,8 +2,6 @@ package com.company;
 
 import java.util.ArrayList;
 
-import static com.company.Node.calculateH;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -60,7 +58,7 @@ public class Main {
         graph.add(jyv);
         graph.add(kpo);
         graph.add(lhi);
-        calculateH(hki,tku);
+        hki.calculateH(tku);
         return graph;
     }
     public static void showNodesAndLinks(){

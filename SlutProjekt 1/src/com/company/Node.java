@@ -68,9 +68,9 @@ public class Node {
     }
 
 
-    public static double calculateH(Node Current,Node destination){
+    public  double calculateH(Node destination){
         double H;
-       H = getDistance(destination.getLongitude(),destination.getLatitude(),Current.getLongitude(),Current.getLatitude());
+       H = getDistance(destination.getLongitude(),destination.getLatitude(),getLongitude(),getLatitude());
         System.out.println(H);
         return H;
     }
