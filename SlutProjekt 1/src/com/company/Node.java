@@ -15,7 +15,6 @@ public class Node {
         setLatitude(lat);
         setLongitude(lon);
 
-
     }
 
     public void setName(String n) {
@@ -80,10 +79,17 @@ public class Node {
     }
 
     public double calculateG(Node source) {
+
         double G = 0;
+
         Node current = this;
 
-        current.calculateH(current.previous);
+            while (current != source) {
+                G += current.calculateH(current.previous);
+
+                current = current.previous;
+
+        }
 
         return G;
     }
@@ -93,7 +99,7 @@ public class Node {
         return F;
     }
 
-    public getRoute(Node source,Node destination) {
+    public getRoute(Node source, Node destination) {
         ArrayList candidates = new ArrayList<>(), visited = new ArrayList();
         Node current = source;
         boolean done;
