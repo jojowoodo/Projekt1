@@ -101,6 +101,8 @@ public class Node {
         double F = calculateH(destination) + calculateG(current);
         return F;
     }
+//current <color> black //
+
 
     public ArrayList<Node> getRoute(Node source, Node destination) {
         ArrayList<Node> candidates = new ArrayList<Node>();
@@ -122,7 +124,7 @@ public class Node {
 
                 for (int j = 0; j < candidates.size(); j++) {
 
-                    if (candidates.equals(destination)) {
+                    if (candidates.get(i) == destination) {
                         done = true;
                         break;
                     } else {
