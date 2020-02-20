@@ -107,7 +107,7 @@ public class Node {
         Node current = source;
         boolean done = false;
 
-        if (done == false) {
+        while (done == false) {
 
             double minF = 0;
             Node next = null;
@@ -117,7 +117,7 @@ public class Node {
                 if (neighbours != candidates && neighbours != visited) {
                     candidates.add(neighbours.get(i));
                 }
-                previous.neighbours = current;
+                neighbours.get(i).previous = current;
 
                 for (int j = 0; j < candidates.size(); j++) {
 
@@ -132,18 +132,21 @@ public class Node {
                         }
                     }
                 }
-                if (done == false) {
+                while (done == false) {
                     current = next;
-                    visited += current;
+                    visited.add(current);
                     candidates.remove(current);
 
                 }
             }
-            ArrayList Route = new ArrayList();
+            ArrayList<Node> route = new ArrayList<Node>();
             current = destination;
-            if (current != source) {
 
+            while (current != source) {
+
+                route.add(current);
                 current = current.previous;
+
             }
 
         }
