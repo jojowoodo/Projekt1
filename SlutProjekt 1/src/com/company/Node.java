@@ -86,43 +86,49 @@ public class Node {
 
         Node current = this;
 
-            while (current != source) {
-                G += current.calculateH(current.previous);
+        while (current != source) {
+            G += current.calculateH(current.previous);
 
-                current = current.previous;
+            current = current.previous;
 
         }
         System.out.println(G);
         return G;
     }
 
-   /* public double getF(ArrayList candidates) {
+    public double getF(ArrayList candidates) {
         double F = calculateH() + calculateG();
         return F;
-    } */
+    }
 
-  /*  public getRoute(Node source, Node destination) {
-        ArrayList candidates = new ArrayList<>(), visited = new ArrayList();
+    public ArrayList<Node> getRoute(Node source, Node destination) {
+        ArrayList<Node> candidates = new ArrayList<Node>();
+        ArrayList<Node> visited = new ArrayList<Node>();
         Node current = source;
-        boolean done;
+        boolean done = false;
 
-        if (done = false) {
+        if (done == false) {
+
             double minF = 0;
-            Object next = null;
+            Node next = null;
+
             for (int i = 0; i < current.neighbours.size(); i++) {
-                neighbours.add(candidates);
-                previous = current;
+
+                if (neighbours != candidates && neighbours != visited) {
+                    candidates.add(neighbours.get(i));
+                }
+                previous.neighbours = current;
 
                 for (int j = 0; j < candidates.size(); j++) {
 
-                    if (candidates = destination) {
+                    if (candidates.equals(destination)) {
                         done = true;
                         break;
                     } else {
                         getF(candidates);
                         if (minF == 0 || minF > getF(candidates)) {
                             minF = getF(candidates);
-                            next = candidates;
+                            next = candidates.get(i);
                         }
                     }
                 }
@@ -133,11 +139,14 @@ public class Node {
 
                 }
             }
+            ArrayList Route = new ArrayList();
+            current = destination;
             if (current != source) {
 
-                current.previous();
+                current = current.previous;
             }
-            return route;
+
         }
-    }*/
+        return route;
+    }
 }
