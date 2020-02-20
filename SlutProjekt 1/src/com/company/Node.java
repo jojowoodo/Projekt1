@@ -85,19 +85,20 @@ public class Node {
         double G = 0;
 
         Node current = this;
-
         while (current != source) {
+            if(current.previous == null ){
+                current.previous = source;
+            }
             G += current.calculateH(current.previous);
-
             current = current.previous;
 
         }
-        System.out.println(G);
+
         return G;
     }
 
-    public double getF(ArrayList candidates) {
-        double F = calculateH() + calculateG();
+    public  double getF(Node destination, Node current) {
+        double F = calculateH(destination) + calculateG(current);
         return F;
     }
 
@@ -125,20 +126,21 @@ public class Node {
                         done = true;
                         break;
                     } else {
-                        getF(candidates);
-                        if (minF == 0 || minF > getF(candidates)) {
-                            minF = getF(candidates);
+                        candidates.get(i).getF();
+                        if (minF == 0 || minF > candidates.get(i).getF()) {
+                            minF = candidates.get(i).getF();
                             next = candidates.get(i);
                         }
                     }
                 }
-                while (done == false) {
+                if (done == false) {
                     current = next;
                     visited.add(current);
                     candidates.remove(current);
 
                 }
             }
+        }
             ArrayList<Node> route = new ArrayList<Node>();
             current = destination;
 
@@ -149,7 +151,7 @@ public class Node {
 
             }
 
-        }
+
         return route;
     }
 }

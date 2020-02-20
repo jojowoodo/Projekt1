@@ -8,6 +8,7 @@ public class Main {
 
 
     showNodesAndLinks();
+    testRun();
 
 
 
@@ -23,6 +24,7 @@ public class Main {
         Node jyv = new Node("Jyväskylä", 62.1373432, 25.0954598);
         Node kpo = new Node("Kuopio", 62.9950487, 26.556762);
         Node lhi = new Node("Lahtis", 60.9948736, 25.5747703);
+
 
         //Förbindelser från Helsingfors tågstation
         hki.addNeighbour(tpe); //Tammerfors
@@ -58,8 +60,8 @@ public class Main {
         graph.add(jyv);
         graph.add(kpo);
         graph.add(lhi);
-        hki.calculateH(tku);
-        hki.calculateG(tku);
+
+
         return graph;
     }
     public static void showNodesAndLinks(){
@@ -72,6 +74,15 @@ public class Main {
                 System.out.println("   "+noden.getNeighbours().get(j).getName());
             }
         }
+    }
+
+    public static void testRun(){
+        ArrayList<Node> testGraph = createGraph();
+
+        System.out.println(testGraph.get(0).getF(testGraph.get(3),testGraph.get(0)));
+
+        System.out.println(testGraph.get(0).getRoute(testGraph.get(3),testGraph.get(0)));
+
     }
 
 
