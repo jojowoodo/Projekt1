@@ -10,9 +10,6 @@ public class Main {
     showNodesAndLinks();
     testRun();
 
-
-
-
     }
 
     public static ArrayList<Node> createGraph()
@@ -61,9 +58,9 @@ public class Main {
         graph.add(kpo);
         graph.add(lhi);
 
-
         return graph;
     }
+
     public static void showNodesAndLinks(){
         ArrayList<Node> test;
         test = createGraph();
@@ -77,11 +74,13 @@ public class Main {
     }
 
     public static void testRun(){
+
+
         ArrayList<Node> testGraph = createGraph();
 
-        System.out.println(testGraph.get(0).getF(testGraph.get(3),testGraph.get(0)));
+        //System.out.println(testGraph.get(0).getF(testGraph.get(3),testGraph.get(0)));
 
-        System.out.println(testGraph.get(0).getRoute(testGraph.get(3),testGraph.get(0)));
+        System.out.println(testGraph.get(0).getRoute(testGraph.get(3),testGraph.get(5)));
 
     }
 

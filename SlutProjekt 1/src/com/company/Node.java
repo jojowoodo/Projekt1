@@ -80,25 +80,24 @@ public class Node {
         return H;
     }
 
-    public double calculateG(Node source) {
+    public double calculateG(Node destination) {
 
         double G = 0;
 
         Node current = this;
-        while (current != source) {
-            if(current.previous == null ){
-                current.previous = source;
-            }
+        while (current != destination) {
+            /*if (current.previous == null) {
+                current.previous = destination;
+            }*/
+
             G += current.calculateH(current.previous);
             current = current.previous;
-
         }
-
         return G;
     }
-
-    public  double getF(Node destination, Node current) {
-        double F = calculateH(destination) + calculateG(current);
+        //Det skall inte skjutas in olika parametrar, utan de skall köras på samma parameter (Maybe)
+    public double getF(Node destination) {
+        double F = calculateH(destination) + calculateG(destination);
         return F;
     }
 //current <color> black //
@@ -124,14 +123,15 @@ public class Node {
 
                 for (int j = 0; j < candidates.size(); j++) {
 
-                    if (candidates.get(i) == destination) {
+                                //Destionation parametrar kan vara current eller destination!!!!!
+                    if (candidates.get(j) == destination) {
                         done = true;
                         break;
                     } else {
-                        candidates.get(i).getF();
-                        if (minF == 0 || minF > candidates.get(i).getF()) {
-                            minF = candidates.get(i).getF();
-                            next = candidates.get(i);
+                        candidates.get(j).getF(destination);
+                        if (minF == 0 || minF > candidates.get(j).getF(destination)) {
+                            minF = candidates.get(j).getF(destination);
+                            next = candidates.get(j);
                         }
                     }
                 }
@@ -143,15 +143,15 @@ public class Node {
                 }
             }
         }
-            ArrayList<Node> route = new ArrayList<Node>();
-            current = destination;
+        ArrayList<Node> route = new ArrayList<Node>();
+        current = destination;
 
-            while (current != source) {
+        while (current != source) {
 
-                route.add(current);
-                current = current.previous;
+            route.add(current);
+            current = current.previous;
 
-            }
+        }
 
 
         return route;
