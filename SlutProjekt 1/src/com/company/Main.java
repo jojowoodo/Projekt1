@@ -59,6 +59,7 @@ public class Main {
         graph.add(kpo);
         graph.add(lhi);
         hki.calculateH(tku);
+        hki.calculateG(tku);
         return graph;
     }
     public static void showNodesAndLinks(){

@@ -1,16 +1,18 @@
 package com.company;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
 import java.util.ArrayList;
 
 public class Node {
     private String name;
     private double latitude;
     private double longitude;
-    private ArrayList<ArrayList> neighbours;
+    private ArrayList<Node> neighbours;
     private Node previous;
 
     public Node(String n, double lat, double lon) {
-        neighbours = new ArrayList<ArrayList>();
+        neighbours = new ArrayList<Node>();
         setName(n);
         setLatitude(lat);
         setLongitude(lon);
@@ -46,11 +48,11 @@ public class Node {
     }
 
 
-    public void addNeighbour(ArrayList town) {
-        neighbours.add(town);
+    public void addNeighbour(Node neighbor) {
+        neighbours.add(neighbor);
     }
 
-    public ArrayList<ArrayList> getNeighbours() {
+    public ArrayList<Node> getNeighbours() {
         return neighbours;
     }
 
@@ -90,16 +92,16 @@ public class Node {
                 current = current.previous;
 
         }
-
+        System.out.println(G);
         return G;
     }
 
-    public double getF(ArrayList candidates) {
+   /* public double getF(ArrayList candidates) {
         double F = calculateH() + calculateG();
         return F;
-    }
+    } */
 
-    public getRoute(Node source, Node destination) {
+  /*  public getRoute(Node source, Node destination) {
         ArrayList candidates = new ArrayList<>(), visited = new ArrayList();
         Node current = source;
         boolean done;
@@ -137,5 +139,5 @@ public class Node {
             }
             return route;
         }
-    }
+    }*/
 }
