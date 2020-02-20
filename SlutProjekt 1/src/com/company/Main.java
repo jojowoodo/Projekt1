@@ -1,19 +1,24 @@
 package com.company;
 
+import javax.crypto.spec.PSource;
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Main {
 
+
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        showNodesAndLinks();
 
 
-    showNodesAndLinks();
-    testRun();
+        testRun();
+
 
     }
 
-    public static ArrayList<Node> createGraph()
-    {
+    public static ArrayList<Node> createGraph() {
         //Skapar en nod för varje tågstation
         Node hki = new Node("Helsingfors", 60.1640504, 24.7600896);
         Node tpe = new Node("Tammerfors", 61.6277369, 23.5501169);
@@ -61,30 +66,57 @@ public class Main {
         return graph;
     }
 
-    public static void showNodesAndLinks(){
+    public static void showNodesAndLinks() {
         ArrayList<Node> test;
         test = createGraph();
-        for (int i = 0; i < test.size(); i++){
+        for (int i = 0; i < test.size(); i++) {
             Node noden = test.get(i);
             System.out.println("\n" + noden.getName());
-            for (int j = 0; j < noden.getNeighbours().size(); j++){
-                System.out.println("   "+noden.getNeighbours().get(j).getName());
+            for (int j = 0; j < noden.getNeighbours().size(); j++) {
+                System.out.println("   " + noden.getNeighbours().get(j).getName());
             }
         }
     }
 
-    public static void testRun(){
+    public static void testRun() {
 
 
         ArrayList<Node> testGraph = createGraph();
 
         //System.out.println(testGraph.get(0).getF(testGraph.get(3),testGraph.get(0)));
 
-        System.out.println(testGraph.get(0).getRoute(testGraph.get(3),testGraph.get(5)));
+        Scanner input = new Scanner(System.in);
+
+
+        System.out.println("Var så vänlig och välj din startpunkt: \n"
+                + "0: Helsingfors \n"
+                + "1: Tammerfors \n"
+                + "2: Åbo \n"
+                + "3: Jyväskylä \n"
+                + "4: Kuopio \n"
+                + "5: Lahtis \n"
+        );
+
+        int sourceIn = input.nextInt();
+
+        System.out.println("Var så vänlig och välj din slutdestination: \n"
+                + "0: Helsingfors \n"
+                + "1: Tammerfors \n"
+                + "2: Åbo \n"
+                + "3: Jyväskylä \n"
+                + "4: Kuopio \n"
+                + "5: Lahtis \n"
+        );
+
+        int destIn = input.nextInt();
+
+
+        System.out.println("Den kortaste ruten är: \n" +
+                "");
+        System.out.println(testGraph.get(0).getRoute(testGraph.get(sourceIn), testGraph.get(destIn)));
+
 
     }
 
-
-
-
 }
+
