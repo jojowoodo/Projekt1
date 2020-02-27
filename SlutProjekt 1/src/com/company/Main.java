@@ -92,13 +92,28 @@ public class Main {
             double minF = 0;
             Node next = null;
 
+            //Check som kollar om de finns en neighbour nod
+            boolean foundNeighbours = false;
+
+
             for (int i = 0; i < current.getNeighbours().size(); i++) {
+
+
+
 
                 if (!candidates.contains(current.getNeighbours().get(i)) && !visited.contains(current.getNeighbours().get(i))) {
 
+                    //Neighbour Nod hittades
+                    foundNeighbours = true;
                     candidates.add(current.getNeighbours().get(i));
                 }
+
                current.getNeighbours().get(i).previous = current;
+            }
+            //ifall noden inte hittar neighbors
+            if (foundNeighbours == false) {
+
+
             }
             for (int j = 0; j < candidates.size(); j++) {
 
