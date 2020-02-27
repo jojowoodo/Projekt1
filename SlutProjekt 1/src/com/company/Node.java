@@ -115,11 +115,11 @@ public class Node {
 
             for (int i = 0; i < current.neighbours.size(); i++) {
 
-                if (neighbours != candidates && neighbours != visited) {
+                if (!candidates.contains(neighbours.get(i)) && !visited.contains(neighbours.get(i))) {
                     candidates.add(neighbours.get(i));
                 }
                 neighbours.get(i).previous = current;
-
+            }
                 for (int j = 0; j < candidates.size(); j++) {
 
                                 //Destionation parametrar kan vara current eller destination!!!!!
@@ -141,7 +141,7 @@ public class Node {
 
                 }
             }
-        }
+
         ArrayList<Node> route = new ArrayList<Node>();
         current = destination;
 
