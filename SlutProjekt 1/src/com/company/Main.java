@@ -87,7 +87,7 @@ public class Main {
         Node current = source;
         boolean done = false;
 
-        while (done == false) {
+        while (!done) {
 
             double minF = 0;
             Node next = null;
@@ -95,6 +95,7 @@ public class Main {
             for (int i = 0; i < current.getNeighbours().size(); i++) {
 
                 if (!candidates.contains(current.getNeighbours().get(i)) && !visited.contains(current.getNeighbours().get(i))) {
+
                     candidates.add(current.getNeighbours().get(i));
                 }
                current.getNeighbours().get(i).previous = current;
@@ -113,7 +114,7 @@ public class Main {
                     }
                 }
             }
-            if (done == false) {
+            if (!done) {
                 current = next;
                 visited.add(current);
                 candidates.remove(current);
@@ -135,6 +136,7 @@ public class Main {
         for (int i = 0; i < route.size(); i++){
             System.out.println( route.get(i).getName());
         }
+        System.out.println(source.getName());
         return route;
 
     }
@@ -157,8 +159,8 @@ public class Main {
                 + "4: Kuopio \n"
                 + "5: Lahtis \n"
         );
+        int destIn = input.nextInt();
 
-        int sourceIn = input.nextInt();
 
         System.out.println("Var så vänlig och välj din slutdestination: \n"
                 + "0: Helsingfors \n"
@@ -169,8 +171,8 @@ public class Main {
                 + "5: Lahtis \n"
         );
 
-        int destIn = input.nextInt();
 
+        int sourceIn = input.nextInt();
 
         System.out.println("Den kortaste rutten är: \n" +
                 "");
