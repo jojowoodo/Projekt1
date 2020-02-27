@@ -4,6 +4,7 @@ import javax.crypto.spec.PSource;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+
 public class Main {
 
 
@@ -78,6 +79,61 @@ public class Main {
         }
     }
 
+
+    public ArrayList<Node> getRoute(Node source, Node destination) {
+        ArrayList<Node> candidates = new ArrayList<Node>();
+        ArrayList<Node> visited = new ArrayList<Node>();
+        Node current = source;
+        boolean done = false;
+
+        while (done == false) {
+
+            double minF = 0;
+            Node next = null;
+
+            for (int i = 0; i < current.neighbours.size(); i++) {
+
+                if (!candidates.contains(neighbours.get(i)) && !visited.contains(neighbours.get(i))) {
+                    candidates.add(neighbours.get(i));
+                }
+                neighbours.get(i).previous = current;
+            }
+            for (int j = 0; j < candidates.size(); j++) {
+
+                //Destionation parametrar kan vara current eller destination!!!!!
+                if (candidates.get(j) == destination) {
+                    done = true;
+                    break;
+                } else {
+                    candidates.get(j).getF(destination);
+                    if (minF == 0 || minF > candidates.get(j).getF(destination)) {
+                        minF = candidates.get(j).getF(destination);
+                        next = candidates.get(j);
+                    }
+                }
+            }
+            if (done == false) {
+                current = next;
+                visited.add(current);
+                candidates.remove(current);
+
+            }
+        }
+
+        ArrayList<Node> route = new ArrayList<Node>();
+        current = destination;
+
+        while (current != source) {
+
+            route.add(current);
+            current = current.previous;
+
+        }
+
+
+        return route;
+    }
+
     public static void testRun() {
 
 
@@ -117,6 +173,7 @@ public class Main {
 
 
     }
+
 
 }
 

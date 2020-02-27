@@ -8,7 +8,7 @@ public class Node {
     private String name;
     private double latitude;
     private double longitude;
-    private ArrayList<Node> neighbours;
+    private  ArrayList<Node> neighbours;
     private Node previous;
 
     public Node(String n, double lat, double lon) {
@@ -80,15 +80,15 @@ public class Node {
         return H;
     }
 
-    public double calculateG(Node destination) {
+    public double calculateG(Node source) {
 
         double G = 0;
 
         Node current = this;
-        while (current != destination) {
-            /*if (current.previous == null) {
-                current.previous = destination;
-            }*/
+        while (current != source) {
+          /*  if (current.previous == null) {
+                current.previous = source;
+           } */
 
             G += current.calculateH(current.previous);
             current = current.previous;
@@ -102,57 +102,5 @@ public class Node {
     }
 
 
-    public ArrayList<Node> getRoute(Node source, Node destination) {
-        ArrayList<Node> candidates = new ArrayList<Node>();
-        ArrayList<Node> visited = new ArrayList<Node>();
-        Node current = source;
-        boolean done = false;
 
-        while (done == false) {
-
-            double minF = 0;
-            Node next = null;
-
-            for (int i = 0; i < current.neighbours.size(); i++) {
-
-                if (!candidates.contains(neighbours.get(i)) && !visited.contains(neighbours.get(i))) {
-                    candidates.add(neighbours.get(i));
-                }
-                neighbours.get(i).previous = current;
-            }
-                for (int j = 0; j < candidates.size(); j++) {
-
-                                //Destionation parametrar kan vara current eller destination!!!!!
-                    if (candidates.get(j) == destination) {
-                        done = true;
-                        break;
-                    } else {
-                        candidates.get(j).getF(destination);
-                        if (minF == 0 || minF > candidates.get(j).getF(destination)) {
-                            minF = candidates.get(j).getF(destination);
-                            next = candidates.get(j);
-                        }
-                    }
-                }
-                if (done == false) {
-                    current = next;
-                    visited.add(current);
-                    candidates.remove(current);
-
-                }
-            }
-
-        ArrayList<Node> route = new ArrayList<Node>();
-        current = destination;
-
-        while (current != source) {
-
-            route.add(current);
-            current = current.previous;
-
-        }
-
-
-        return route;
-    }
 }
