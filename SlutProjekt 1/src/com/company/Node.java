@@ -100,7 +100,6 @@ public class Node {
         double F = calculateH(destination) + calculateG(destination);
         return F;
     }
-//current <color> black //
 
 
     public ArrayList<Node> getRoute(Node source, Node destination) {
