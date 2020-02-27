@@ -15,7 +15,7 @@ public class Main {
         showNodesAndLinks();
 
 
-        testRun();
+        RunThis();
 
 
     }
@@ -141,10 +141,10 @@ public class Main {
 
     }
 
-    public static void testRun() {
+    public static void RunThis() {
 
 
-        ArrayList<Node> testGraph = createGraph();
+        ArrayList<Node> stations= createGraph();
 
 
 
@@ -176,7 +176,7 @@ public class Main {
 
         System.out.println("Den kortaste rutten är: \n" +
                 "");
-        System.out.println(getRoute(testGraph.get(sourceIn),testGraph.get(destIn)));
+        System.out.println(getRoute(stations.get(sourceIn),stations.get(destIn)));
 
 
     }
