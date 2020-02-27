@@ -9,7 +9,7 @@ public class Node {
     private double latitude;
     private double longitude;
     private  ArrayList<Node> neighbours;
-    private Node previous;
+    public Node previous;
 
     public Node(String n, double lat, double lon) {
         neighbours = new ArrayList<Node>();
@@ -75,8 +75,8 @@ public class Node {
 
     public double calculateH(Node destination) {
         double H;
-        H = getDistance(destination.getLongitude(), destination.getLatitude(), getLongitude(), getLatitude());
-        System.out.println(H);
+        H = getDistance(destination.getLongitude(), destination.getLatitude(), this.getLongitude(), this.getLatitude());
+
         return H;
     }
 
@@ -86,9 +86,7 @@ public class Node {
 
         Node current = this;
         while (current != source) {
-          /*  if (current.previous == null) {
-                current.previous = source;
-           } */
+
 
             G += current.calculateH(current.previous);
             current = current.previous;
@@ -96,8 +94,8 @@ public class Node {
         return G;
     }
         //Det skall inte skjutas in olika parametrar, utan de skall köras på samma parameter (Maybe)
-    public double getF(Node destination) {
-        double F = calculateH(destination) + calculateG(destination);
+    public double getF(Node destination,Node source) {
+        double F = calculateH(destination) + calculateG(source);
         return F;
     }
 

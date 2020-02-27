@@ -1,6 +1,7 @@
 package com.company;
 
 import javax.crypto.spec.PSource;
+import javax.swing.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -80,7 +81,7 @@ public class Main {
     }
 
 
-    public ArrayList<Node> getRoute(Node source, Node destination) {
+    public static ArrayList<Node> getRoute(Node source, Node destination) {
         ArrayList<Node> candidates = new ArrayList<Node>();
         ArrayList<Node> visited = new ArrayList<Node>();
         Node current = source;
@@ -91,12 +92,12 @@ public class Main {
             double minF = 0;
             Node next = null;
 
-            for (int i = 0; i < current.neighbours.size(); i++) {
+            for (int i = 0; i < current.getNeighbours().size(); i++) {
 
-                if (!candidates.contains(neighbours.get(i)) && !visited.contains(neighbours.get(i))) {
-                    candidates.add(neighbours.get(i));
+                if (!candidates.contains(current.getNeighbours().get(i)) && !visited.contains(current.getNeighbours().get(i))) {
+                    candidates.add(current.getNeighbours().get(i));
                 }
-                neighbours.get(i).previous = current;
+               current.getNeighbours().get(i).previous = current;
             }
             for (int j = 0; j < candidates.size(); j++) {
 
@@ -105,9 +106,9 @@ public class Main {
                     done = true;
                     break;
                 } else {
-                    candidates.get(j).getF(destination);
-                    if (minF == 0 || minF > candidates.get(j).getF(destination)) {
-                        minF = candidates.get(j).getF(destination);
+                    candidates.get(j).getF(destination,source);
+                    if (minF == 0 || minF > candidates.get(j).getF(destination,source)) {
+                        minF = candidates.get(j).getF(destination,source);
                         next = candidates.get(j);
                     }
                 }
@@ -130,8 +131,12 @@ public class Main {
 
         }
 
-
+        System.out.println(route);
+        for (int i = 0; i < route.size(); i++){
+            System.out.println( route.get(i).getName());
+        }
         return route;
+
     }
 
     public static void testRun() {
@@ -139,7 +144,7 @@ public class Main {
 
         ArrayList<Node> testGraph = createGraph();
 
-        //System.out.println(testGraph.get(0).getF(testGraph.get(3),testGraph.get(0)));
+
 
         Scanner input = new Scanner(System.in);
 
@@ -167,9 +172,9 @@ public class Main {
         int destIn = input.nextInt();
 
 
-        System.out.println("Den kortaste ruten är: \n" +
+        System.out.println("Den kortaste rutten är: \n" +
                 "");
-        System.out.println(testGraph.get(0).getRoute(testGraph.get(sourceIn), testGraph.get(destIn)));
+        System.out.println(getRoute(testGraph.get(sourceIn),testGraph.get(destIn)));
 
 
     }
