@@ -103,18 +103,15 @@ public class Main {
 
                 if (!candidates.contains(current.getNeighbours().get(i)) && !visited.contains(current.getNeighbours().get(i))) {
 
-                    //Neighbour Nod hittades
-                    foundNeighbours = true;
+
                     candidates.add(current.getNeighbours().get(i));
+                    current.getNeighbours().get(i).previous = current;
                 }
 
-               current.getNeighbours().get(i).previous = current;
-            }
-            //ifall noden inte hittar neighbors
-            if (foundNeighbours == false) {
 
 
             }
+
             for (int j = 0; j < candidates.size(); j++) {
 
                 //Destionation parametrar kan vara current eller destination!!!!!
@@ -147,7 +144,7 @@ public class Main {
 
         }
 
-        System.out.println(route);
+
         for (int i = 0; i < route.size(); i++){
             System.out.println( route.get(i).getName());
         }
@@ -166,7 +163,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
 
-        System.out.println("Var så vänlig och välj din startpunkt: \n"
+        System.out.println("Var så vänlig och välj din destination: \n"
                 + "0: Helsingfors \n"
                 + "1: Tammerfors \n"
                 + "2: Åbo \n"
@@ -177,7 +174,7 @@ public class Main {
         int destIn = input.nextInt();
 
 
-        System.out.println("Var så vänlig och välj din slutdestination: \n"
+        System.out.println("Var så vänlig och välj din startpunkt: \n"
                 + "0: Helsingfors \n"
                 + "1: Tammerfors \n"
                 + "2: Åbo \n"

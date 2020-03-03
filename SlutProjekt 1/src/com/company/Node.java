@@ -17,6 +17,7 @@ public class Node {
         setLatitude(lat);
         setLongitude(lon);
 
+
     }
 
     public void setName(String n) {
@@ -31,6 +32,7 @@ public class Node {
         longitude = lon;
     }
 
+
     public double getLatitude() {
         return latitude;
     }
@@ -43,9 +45,7 @@ public class Node {
         return name;
     }
 
-    public void setPrevious(Node p) {
-        previous = p;
-    }
+
 
 
     public void addNeighbour(Node neighbor) {
