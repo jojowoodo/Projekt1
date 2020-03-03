@@ -10,13 +10,11 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
+        //kör creategraph och printar ut alla stationer och deras grannar
         showNodesAndLinks();
 
-
+        //kör getroute
         RunThis();
-
 
     }
 
@@ -82,39 +80,26 @@ public class Main {
 
 
     public static ArrayList<Node> getRoute(Node source, Node destination) {
-        ArrayList<Node> candidates = new ArrayList<Node>();
-        ArrayList<Node> visited = new ArrayList<Node>();
+        ArrayList<Node> candidates = new ArrayList<>();
+        ArrayList<Node> visited = new ArrayList<>();
         Node current = source;
         boolean done = false;
 
         while (!done) {
-
             double minF = 0;
             Node next = null;
 
-            //Check som kollar om de finns en neighbour nod
-            boolean foundNeighbours = false;
-
-
             for (int i = 0; i < current.getNeighbours().size(); i++) {
 
-
-
-
                 if (!candidates.contains(current.getNeighbours().get(i)) && !visited.contains(current.getNeighbours().get(i))) {
-
-
                     candidates.add(current.getNeighbours().get(i));
                     current.getNeighbours().get(i).previous = current;
                 }
-
-
 
             }
 
             for (int j = 0; j < candidates.size(); j++) {
 
-                //Destionation parametrar kan vara current eller destination!!!!!
                 if (candidates.get(j) == destination) {
                     done = true;
                     break;
@@ -143,36 +128,15 @@ public class Main {
             current = current.previous;
 
         }
-
-
-        for (int i = 0; i < route.size(); i++){
-            System.out.println( route.get(i).getName());
-        }
-        System.out.println(source.getName());
         return route;
-
     }
-
+    //kör programmet
     public static void RunThis() {
-
-
+        //skapar grafen stations
         ArrayList<Node> stations= createGraph();
 
-
-
+        //destination och startpunkt in
         Scanner input = new Scanner(System.in);
-
-
-        System.out.println("Var så vänlig och välj din destination: \n"
-                + "0: Helsingfors \n"
-                + "1: Tammerfors \n"
-                + "2: Åbo \n"
-                + "3: Jyväskylä \n"
-                + "4: Kuopio \n"
-                + "5: Lahtis \n"
-        );
-        int destIn = input.nextInt();
-
 
         System.out.println("Var så vänlig och välj din startpunkt: \n"
                 + "0: Helsingfors \n"
@@ -182,14 +146,30 @@ public class Main {
                 + "4: Kuopio \n"
                 + "5: Lahtis \n"
         );
+        int firstIn = input.nextInt();
+
+        System.out.println("Var så vänlig och välj din destination: \n"
+                + "0: Helsingfors \n"
+                + "1: Tammerfors \n"
+                + "2: Åbo \n"
+                + "3: Jyväskylä \n"
+                + "4: Kuopio \n"
+                + "5: Lahtis \n"
+        );
+
+        int secondIn = input.nextInt();
+
+        System.out.println("Den kortaste rutten är: \n" + "");
+        //kör getRoute
+        ArrayList<Node> result = getRoute(stations.get(secondIn),stations.get(firstIn));
 
 
-        int sourceIn = input.nextInt();
-
-        System.out.println("Den kortaste rutten är: \n" +
-                "");
-        System.out.println(getRoute(stations.get(sourceIn),stations.get(destIn)));
-
+      //printar rutten
+      for(int i = 0; i < result.size(); i++){
+          System.out.println(result.get(i).getName());
+      }
+      //printar destinationen, eftersom den inte kommer med i route arrayn
+        System.out.println(stations.get(secondIn).getName());
 
     }
 
